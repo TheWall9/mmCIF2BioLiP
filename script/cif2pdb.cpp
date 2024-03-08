@@ -3415,10 +3415,11 @@ COLUMNS        DATA  TYPE    FIELD        DEFINITION
                 else if (comp_id.substr(0,2)==" D") moltype_vec[1]++;
                 else moltype_vec[comp_id.size()-1]++;
                 buf.str(string());
+                group_PDB = pep.chains[c].residues[r].het==1? "ATOM  ":"HETATM";
                 for (a=0;a<pep.chains[c].residues[r].atoms.size();a++)
                 {
                     serial++;
-                    fout_buf<<"ATOM  "<<right<<setw(5)<<serial%100000<<' '
+                    fout_buf<<group_PDB<<right<<setw(5)<<serial%100000<<' '
                         <<pep.chains[c].residues[r].atoms[a].name<<' '
                         <<setw(3)<<comp_id.substr(0,3)
                         <<setw(2)<<pep.chains[c].asym_id.substr(0,2)<<resSeq<<"   "
